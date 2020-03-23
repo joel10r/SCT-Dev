@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SCT.Models.Solicitud>
+
+@{
+    ViewBag.Title = "Consulta Por Imei";
+}
+
+<h2>Consulta Por Imei</h2>
+<h1>@ViewBag.Message</h1>
+
+@using (Html.BeginForm("ConsultaImeiSupervisor", "Consultas", FormMethod.Post))
+{
+
+
+
+    @Html.TextBox("imei", null, htmlAttributes: new { placeholder = "IMEI", @class = "form-control" })
+    <br />
+    <input type="submit" value="Buscar" class="btn btn-primary" />
+    <br />
+    <br />
+
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.imei)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imeiSustituido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo.nombreModelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormaPago.nombreFormaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTramite.nombreTipoTramite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>Acción</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.imei)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.serie)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.imeiSustituido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Modelo.nombreModelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombreUsuario)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pedido)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FormaPago.nombreFormaPago)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TipoTramite.nombreTipoTramite)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "EditConsultaSupervisor", new { id = item.idOrden }) |
+        @Html.ActionLink("Detalles", "DetallesConsulta", new { id = item.idOrden })
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.idOrden })
+
+    </td>
+</tr>
+    }
+
+</table>

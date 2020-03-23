@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SCT.Models.TipoAnotacion>
+
+@{
+    ViewBag.Title = "Anotación";
+}
+
+<h2>Anotaciones Registradas</h2>
+
+<p>
+    @Html.ActionLink("Agregar Anotación", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreTipoAnotacion)
+        </th>
+        <th>Acción</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreTipoAnotacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idTipoAnotacion }) |
+           
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idTipoAnotacion })
+        </td>
+    </tr>
+}
+
+</table>

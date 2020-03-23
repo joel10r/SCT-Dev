@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SCT.Models.Marca>
+
+@{
+    ViewBag.Title = "Marcas";
+}
+
+<h2>Marcas Registradas</h2>
+
+<p>
+    @Html.ActionLink("Agregar Marca", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreMarca)
+        </th>
+        <th>Acción</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreMarca)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idMarca }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idMarca })
+        </td>
+    </tr>
+}
+
+</table>

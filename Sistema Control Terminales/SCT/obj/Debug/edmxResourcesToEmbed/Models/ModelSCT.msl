@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SCT_DBModelStoreContainer" CdmEntityContainer="SCT_DBEntities">
+    <EntitySetMapping Name="Anotacion">
+      <EntityTypeMapping TypeName="SCT_DBModel.Anotacion">
+        <MappingFragment StoreEntitySet="Anotacion">
+          <ScalarProperty Name="idAnotacion" ColumnName="idAnotacion" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="datosCliente" ColumnName="datosCliente" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="imei" ColumnName="imei" />
+          <ScalarProperty Name="idTipoAnotacion" ColumnName="idTipoAnotacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bitacora">
+      <EntityTypeMapping TypeName="SCT_DBModel.Bitacora">
+        <MappingFragment StoreEntitySet="Bitacora">
+          <ScalarProperty Name="idBitacora" ColumnName="idBitacora" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="accion" ColumnName="accion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormaPago">
+      <EntityTypeMapping TypeName="SCT_DBModel.FormaPago">
+        <MappingFragment StoreEntitySet="FormaPago">
+          <ScalarProperty Name="idFormaPago" ColumnName="idFormaPago" />
+          <ScalarProperty Name="nombreFormaPago" ColumnName="nombreFormaPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="SCT_DBModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+          <ScalarProperty Name="nombreMarca" ColumnName="nombreMarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="SCT_DBModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="idModelo" ColumnName="idModelo" />
+          <ScalarProperty Name="nombreModelo" ColumnName="nombreModelo" />
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitud">
+      <EntityTypeMapping TypeName="SCT_DBModel.Solicitud">
+        <MappingFragment StoreEntitySet="Solicitud">
+          <ScalarProperty Name="idOrden" ColumnName="idOrden" />
+          <ScalarProperty Name="imei" ColumnName="imei" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="imeiSustituido" ColumnName="imeiSustituido" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="datosCliente" ColumnName="datosCliente" />
+          <ScalarProperty Name="cedulaCliente" ColumnName="cedulaCliente" />
+          <ScalarProperty Name="pedido" ColumnName="pedido" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="idModelo" ColumnName="idModelo" />
+          <ScalarProperty Name="idFormaPago" ColumnName="idFormaPago" />
+          <ScalarProperty Name="idTipoTramite" ColumnName="idTipoTramite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoAnotacion">
+      <EntityTypeMapping TypeName="SCT_DBModel.TipoAnotacion">
+        <MappingFragment StoreEntitySet="TipoAnotacion">
+          <ScalarProperty Name="idTipoAnotacion" ColumnName="idTipoAnotacion" />
+          <ScalarProperty Name="nombreTipoAnotacion" ColumnName="nombreTipoAnotacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoTramite">
+      <EntityTypeMapping TypeName="SCT_DBModel.TipoTramite">
+        <MappingFragment StoreEntitySet="TipoTramite">
+          <ScalarProperty Name="idTipoTramite" ColumnName="idTipoTramite" />
+          <ScalarProperty Name="nombreTipoTramite" ColumnName="nombreTipoTramite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

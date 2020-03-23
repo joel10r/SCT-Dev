@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SCT.Models.FormaPago>
+
+@{
+    ViewBag.Title = "Forma de Pago";
+}
+
+<h2>Formas de Pago Registradas</h2>
+
+<p>
+    @Html.ActionLink("Agregar Forma de Pago", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreFormaPago)
+        </th>
+        <th>Acción</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreFormaPago)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idFormaPago }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idFormaPago })
+        </td>
+    </tr>
+}
+
+</table>

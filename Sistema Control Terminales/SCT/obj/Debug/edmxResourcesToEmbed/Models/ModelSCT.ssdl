@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SCT_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anotacion">
+    <Key>
+      <PropertyRef Name="idAnotacion" />
+    </Key>
+    <Property Name="idAnotacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreUsuario" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="datosCliente" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="observacion" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="imei" Type="bigint" Nullable="false" />
+    <Property Name="idTipoAnotacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bitacora">
+    <Key>
+      <PropertyRef Name="idBitacora" />
+    </Key>
+    <Property Name="idBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="accion" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FormaPago">
+    <Key>
+      <PropertyRef Name="idFormaPago" />
+    </Key>
+    <Property Name="idFormaPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreFormaPago" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="idMarca" />
+    </Key>
+    <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreMarca" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="idModelo" />
+    </Key>
+    <Property Name="idModelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreModelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="idMarca" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idOrden" />
+    </Key>
+    <Property Name="idOrden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imei" Type="bigint" />
+    <Property Name="serie" Type="nvarchar" MaxLength="200" />
+    <Property Name="imeiSustituido" Type="bigint" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="nombreUsuario" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="datosCliente" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="cedulaCliente" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="pedido" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="telefono" Type="int" Nullable="false" />
+    <Property Name="idModelo" Type="int" Nullable="false" />
+    <Property Name="idFormaPago" Type="int" Nullable="false" />
+    <Property Name="idTipoTramite" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoAnotacion">
+    <Key>
+      <PropertyRef Name="idTipoAnotacion" />
+    </Key>
+    <Property Name="idTipoAnotacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreTipoAnotacion" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoTramite">
+    <Key>
+      <PropertyRef Name="idTipoTramite" />
+    </Key>
+    <Property Name="idTipoTramite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreTipoTramite" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FKIdFormaPago">
+    <End Role="FormaPago" Type="Self.FormaPago" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormaPago">
+        <PropertyRef Name="idFormaPago" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idFormaPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIdMarca">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="idMarca" />
+      </Principal>
+      <Dependent Role="Modelo">
+        <PropertyRef Name="idMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIdModelo">
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="idModelo" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idModelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIdTipoAnotacion">
+    <End Role="TipoAnotacion" Type="Self.TipoAnotacion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Anotacion" Type="Self.Anotacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnotacion">
+        <PropertyRef Name="idTipoAnotacion" />
+      </Principal>
+      <Dependent Role="Anotacion">
+        <PropertyRef Name="idTipoAnotacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIdTipoTramite">
+    <End Role="TipoTramite" Type="Self.TipoTramite" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTramite">
+        <PropertyRef Name="idTipoTramite" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoTramite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SCT_DBModelStoreContainer">
+    <EntitySet Name="Anotacion" EntityType="Self.Anotacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FormaPago" EntityType="Self.FormaPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud" EntityType="Self.Solicitud" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoAnotacion" EntityType="Self.TipoAnotacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoTramite" EntityType="Self.TipoTramite" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FKIdFormaPago" Association="Self.FKIdFormaPago">
+      <End Role="FormaPago" EntitySet="FormaPago" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FKIdMarca" Association="Self.FKIdMarca">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Modelo" EntitySet="Modelo" />
+    </AssociationSet>
+    <AssociationSet Name="FKIdModelo" Association="Self.FKIdModelo">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FKIdTipoAnotacion" Association="Self.FKIdTipoAnotacion">
+      <End Role="TipoAnotacion" EntitySet="TipoAnotacion" />
+      <End Role="Anotacion" EntitySet="Anotacion" />
+    </AssociationSet>
+    <AssociationSet Name="FKIdTipoTramite" Association="Self.FKIdTipoTramite">
+      <End Role="TipoTramite" EntitySet="TipoTramite" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

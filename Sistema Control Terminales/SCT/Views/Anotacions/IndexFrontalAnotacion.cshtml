@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SCT.Models.Anotacion>
+
+@{
+    ViewBag.Title = "Anotación";
+}
+
+<h2>Anotaciones</h2>
+
+<p>
+    @Html.ActionLink("Agregar Anotación", "CrearAnotacionFrontal")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datosCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.observacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imei)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoAnotacion.nombreTipoAnotacion)
+        </th>
+        <th>Acción</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datosCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imei)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoAnotacion.nombreTipoAnotacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idAnotacion }) 
+            @*@Html.ActionLink("Detalles", "Details", new { id=item.idAnotacion }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.idAnotacion })*@
+        </td>
+    </tr>
+}
+
+</table>

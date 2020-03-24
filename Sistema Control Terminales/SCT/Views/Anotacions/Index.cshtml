@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<SCT.Models.Anotacion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Anotación";
 }
 
-<h2>Index</h2>
+<h2>Anotaciones</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -26,7 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.TipoAnotacion.nombreTipoAnotacion)
         </th>
-        <th>Acción</th>
+        @*<th>Acción</th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -46,11 +46,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.TipoAnotacion.nombreTipoAnotacion)
         </td>
-        <td>
-           @* @Html.ActionLink("Edit", "Edit", new { id=item.idAnotacion }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.idAnotacion }) |
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.idAnotacion })*@
-        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idAnotacion }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idAnotacion }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.idAnotacion })
+        </td>*@
     </tr>
 }
 

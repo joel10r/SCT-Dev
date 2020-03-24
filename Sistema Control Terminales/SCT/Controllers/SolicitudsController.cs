@@ -298,8 +298,13 @@ namespace SCT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarSolicitudFrontal([Bind(Include = "idOrden,imei,serie,imeiSustituido,fecha,nombreUsuario,datosCliente,cedulaCliente,pedido,telefono,idModelo,idFormaPago,idTipoTramite")] Solicitud solicitud)
         {
+
+          
+
             if (ModelState.IsValid)
             {
+                
+
                 db.Entry(solicitud).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("IndexFrontal");

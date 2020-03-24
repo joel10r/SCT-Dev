@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SCT.Models;
+using PagedList;
 
 namespace SCT.Controllers
 {
@@ -16,10 +17,10 @@ namespace SCT.Controllers
 
         // GET: Modeloes
         [Authorize(Roles = "Administrador")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var modelo = db.Modelo.Include(m => m.Marca);
-            return View(modelo.ToList());
+            return View(modelo.ToList().OrderBy(m => m.Marca.nombreMarca).ToPagedList(page ?? 1, 10));
         }
 
         // GET: Modeloes/Details/5

@@ -250,3 +250,7 @@ C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\obj\Debug\SCT
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\obj\Debug\SCT.csproj.CopyComplete
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\obj\Debug\SCT.dll
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\obj\Debug\SCT.pdb
+C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.dll
+C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.Mvc.dll
+C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.xml
+C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.Mvc.xml

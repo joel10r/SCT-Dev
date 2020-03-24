@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SCT.Models.TipoAnotacion>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SCT.Models.TipoAnotacion>
 
 @{
     ViewBag.Title = "Anotación";
@@ -12,22 +14,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombreTipoAnotacion)
+            @Html.DisplayNameFor(model => model.First().nombreTipoAnotacion)
         </th>
         <th>Acción</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreTipoAnotacion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idTipoAnotacion }) |
-           
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.idTipoAnotacion })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreTipoAnotacion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idTipoAnotacion }) |
+
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idTipoAnotacion })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

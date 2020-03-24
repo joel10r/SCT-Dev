@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SCT.Models;
+using PagedList;
 
 namespace SCT.Controllers
 {
@@ -15,9 +16,9 @@ namespace SCT.Controllers
         private SCT_DBEntities db = new SCT_DBEntities();
 
         // GET: Bitacoras
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Bitacora.ToList());
+            return View(db.Bitacora.ToList().OrderBy(b => b.fecha).ToPagedList(page ?? 1, 10));
         }
 
         protected override void Dispose(bool disposing)

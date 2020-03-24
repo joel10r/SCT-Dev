@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SCT.Models.Anotacion>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SCT.Models.Anotacion>
 
 @{
     ViewBag.Title = "Anotación";
@@ -12,46 +14,49 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombreUsuario)
+            @Html.DisplayNameFor(model => model.First().nombreUsuario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.datosCliente)
+            @Html.DisplayNameFor(model => model.First().datosCliente)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.observacion)
+            @Html.DisplayNameFor(model => model.First().observacion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.imei)
+            @Html.DisplayNameFor(model => model.First().imei)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoAnotacion.nombreTipoAnotacion)
+            @Html.DisplayNameFor(model => model.First().TipoAnotacion.nombreTipoAnotacion)
         </th>
         <th>Acción</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datosCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imei)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoAnotacion.nombreTipoAnotacion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idAnotacion }) 
-            @*@Html.ActionLink("Detalles", "Details", new { id=item.idAnotacion }) |*@
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.idAnotacion })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datosCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.observacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imei)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoAnotacion.nombreTipoAnotacion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idAnotacion })
+                @*@Html.ActionLink("Detalles", "Details", new { id=item.idAnotacion }) |*@
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.idAnotacion })*@
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

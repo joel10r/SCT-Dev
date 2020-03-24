@@ -1,7 +1,9 @@
-﻿@model IEnumerable<SCT.Models.Bitacora>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SCT.Models.Bitacora>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Bitacora";
 }
 
 <h2>Registro Bitácora</h2>
@@ -9,29 +11,32 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.usuario)
+            @Html.DisplayNameFor(model => model.First().usuario)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.accion)
+            @Html.DisplayNameFor(model => model.First().accion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha)
+            @Html.DisplayNameFor(model => model.First().fecha)
         </th>
-       
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

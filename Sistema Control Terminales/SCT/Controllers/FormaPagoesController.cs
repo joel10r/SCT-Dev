@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SCT.Models;
+using PagedList;
 
 namespace SCT.Controllers
 {
@@ -16,9 +17,9 @@ namespace SCT.Controllers
 
         // GET: FormaPagoes
         [Authorize(Roles = "Administrador")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.FormaPago.ToList());
+            return View(db.FormaPago.ToList().OrderBy(f => f.nombreFormaPago).ToPagedList(page ?? 1, 10));
         }
 
         // GET: FormaPagoes/Details/5

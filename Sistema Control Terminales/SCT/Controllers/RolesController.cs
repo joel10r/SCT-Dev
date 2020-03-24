@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 using SCT.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace SCT.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Roles
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Roles.ToList());
+            return View(db.Roles.ToList().ToPagedList(page ?? 1, 10));
         }
 
         // GET: Roles/Details/5

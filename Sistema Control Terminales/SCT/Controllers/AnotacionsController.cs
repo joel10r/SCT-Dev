@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using SCT.Models;
+using PagedList;
 
 namespace SCT.Controllers
 {
@@ -16,10 +17,11 @@ namespace SCT.Controllers
         private SCT_DBEntities db = new SCT_DBEntities();
 
         // GET: Anotacions
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var anotacion = db.Anotacion.Include(a => a.TipoAnotacion);
-            return View(anotacion.ToList());
+            return View(anotacion.ToList().OrderBy(a => a.idTipoAnotacion)
+                .Where(a => a.TipoAnotacion.nombreTipoAnotacion == "Abierto").ToPagedList(page ?? 1, 10));
         }
 
 
@@ -174,7 +176,7 @@ namespace SCT.Controllers
         // Frontal 
 
         [Authorize(Roles = "Frontal")]
-        public ActionResult IndexFrontalAnotacion()
+        public ActionResult IndexFrontalAnotacion(int? page)
         {
             string usuario = User.Identity.GetUserName();
             string nombre = db.TipoAnotacion.ToString();
@@ -183,7 +185,7 @@ namespace SCT.Controllers
             return View(anotacion.ToList().OrderByDescending(a => a.idAnotacion).Where(
                 a => a.nombreUsuario == usuario && a.TipoAnotacion.nombreTipoAnotacion.ToString() ==
                     "Abierto" || a.TipoAnotacion.nombreTipoAnotacion.ToString() ==
-                    "Escalado GTI"));
+                    "Escalado GTI").ToPagedList(page ?? 1, 10));
         }
 
         public ActionResult CrearAnotacionFrontal()

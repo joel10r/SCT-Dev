@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using SCT.Models;
 using SCT.Models.AutoComplete;
+using PagedList;
 
 namespace SCT.Controllers
 {
@@ -19,10 +20,10 @@ namespace SCT.Controllers
         private SCT_DBEntities db = new SCT_DBEntities();
 
         // GET: Solicituds
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var solicitud = db.Solicitud.Include(s => s.FormaPago).Include(s => s.Modelo).Include(s => s.TipoTramite);
-            return View(solicitud.ToList());
+            return View(solicitud.ToList().ToPagedList(page ?? 1, 10));
         }
 
         // GET: Solicituds/Details/5
@@ -185,7 +186,7 @@ namespace SCT.Controllers
         // Vistas Parciales Frontal
 
         //[Authorize(Roles = "Frontal")]
-        public ActionResult IndexFrontal()
+        public ActionResult IndexFrontal(int? page)
 
         {
             var orden = db.Solicitud.Include(s => s.FormaPago).Include(s => s.Modelo).Include(s => s.FormaPago);
@@ -193,7 +194,7 @@ namespace SCT.Controllers
             string usuario = User.Identity.GetUserName();
 
             return View(orden.ToList().OrderByDescending(o => o.idOrden).Where
-                (o => o.nombreUsuario == usuario && o.fecha == DateTime.Today));
+                (o => o.nombreUsuario == usuario && o.fecha == DateTime.Today).ToPagedList(page ?? 1, 10));
 
         }
 

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SCT.Models.Solicitud>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SCT.Models.Solicitud>
 
 <p>
     @Html.ActionLink("Solicitar", "CrearSolicitudFrontal")
@@ -6,86 +8,89 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.imei)
+            @Html.DisplayNameFor(model => model.First().imei)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.serie)
+            @Html.DisplayNameFor(model => model.First().serie)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.imeiSustituido)
+            @Html.DisplayNameFor(model => model.First().imeiSustituido)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.fecha)
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreUsuario)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.First().datosCliente)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombreUsuario)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.datosCliente)
+            @Html.DisplayNameFor(model => model.First().cedulaCliente)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cedulaCliente)
+            @Html.DisplayNameFor(model => model.First().pedido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pedido)
+            @Html.DisplayNameFor(model => model.First().telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telefono)
+            @Html.DisplayNameFor(model => model.First().FormaPago.nombreFormaPago)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FormaPago.nombreFormaPago)
+            @Html.DisplayNameFor(model => model.First().Modelo.nombreModelo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modelo.nombreModelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoTramite.nombreTipoTramite)
+            @Html.DisplayNameFor(model => model.First().TipoTramite.nombreTipoTramite)
         </th>
         <th>Acción</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.imei)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.serie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imeiSustituido)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreUsuario)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.datosCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cedulaCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FormaPago.nombreFormaPago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo.nombreModelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoTramite.nombreTipoTramite)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditarSolicitudFrontal", new { id=item.idOrden })            
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.imei)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imeiSustituido)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreUsuario)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.datosCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cedulaCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormaPago.nombreFormaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo.nombreModelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTramite.nombreTipoTramite)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarSolicitudFrontal", new { id = item.idOrden })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

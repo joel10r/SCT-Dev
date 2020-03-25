@@ -11,14 +11,20 @@ namespace SCT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Anotacion
     {
         public int idAnotacion { get; set; }
+        [Display(Name = "Usuario")]
         public string nombreUsuario { get; set; }
+        [Display(Name = "Cliente")]
         public string datosCliente { get; set; }
+        [Display(Name = "Observación")]
         public string observacion { get; set; }
+        [Display(Name = "IMEI")]
         public long imei { get; set; }
+        [Display(Name = "Tipo Anotación")]
         public int idTipoAnotacion { get; set; }
     
         public virtual TipoAnotacion TipoAnotacion { get; set; }

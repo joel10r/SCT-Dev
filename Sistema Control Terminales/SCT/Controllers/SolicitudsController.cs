@@ -23,7 +23,7 @@ namespace SCT.Controllers
         public ActionResult Index(int? page)
         {
             var solicitud = db.Solicitud.Include(s => s.FormaPago).Include(s => s.Modelo).Include(s => s.TipoTramite);
-            return View(solicitud.ToList().ToPagedList(page ?? 1, 10));
+            return View(solicitud.ToList().Where(s => s.fecha == DateTime.Today).OrderByDescending(s => s.idOrden).ToPagedList(page ?? 1, 10));
         }
 
         // GET: Solicituds/Details/5

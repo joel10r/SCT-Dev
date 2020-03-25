@@ -11,12 +11,16 @@ namespace SCT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Bitacora
     {
         public int idBitacora { get; set; }
+        [Display(Name = "Usuario")]
         public string usuario { get; set; }
+        [Display(Name = "Acción")]
         public string accion { get; set; }
+        [Display(Name = "Fecha")]
         public System.DateTime fecha { get; set; }
     }
 }

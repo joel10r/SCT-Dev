@@ -11,7 +11,8 @@ namespace SCT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TipoAnotacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,9 @@ namespace SCT.Models
         {
             this.Anotacion = new HashSet<Anotacion>();
         }
-    
+        [Display(Name = "Tipo Anotacion")]
         public int idTipoAnotacion { get; set; }
+        [Display(Name = "Estado")]
         public string nombreTipoAnotacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

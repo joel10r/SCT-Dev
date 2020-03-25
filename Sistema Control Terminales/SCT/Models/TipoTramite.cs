@@ -11,7 +11,8 @@ namespace SCT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TipoTramite
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,10 @@ namespace SCT.Models
         {
             this.Solicitud = new HashSet<Solicitud>();
         }
-    
+
+        [Display(Name = "Tramite")]
         public int idTipoTramite { get; set; }
+        [Display(Name = "Tramite")]
         public string nombreTipoTramite { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

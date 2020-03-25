@@ -21,7 +21,8 @@ namespace SCT.Controllers
         {
             var anotacion = db.Anotacion.Include(a => a.TipoAnotacion);
             return View(anotacion.ToList().OrderBy(a => a.idTipoAnotacion)
-                .Where(a => a.TipoAnotacion.nombreTipoAnotacion == "Abierto").ToPagedList(page ?? 1, 10));
+                .Where(a => a.TipoAnotacion.nombreTipoAnotacion == "Abierto" ||
+                    a.TipoAnotacion.nombreTipoAnotacion == "Escalado GTI").OrderByDescending(a => a.idAnotacion).ToPagedList(page ?? 1, 10));
         }
 
 

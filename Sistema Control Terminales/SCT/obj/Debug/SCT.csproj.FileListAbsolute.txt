@@ -254,3 +254,4 @@ C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.Mvc.dll
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.xml
 C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\bin\PagedList.Mvc.xml
+C:\Users\joel1\OneDrive\Git\SCT-Dev\Sistema Control Terminales\SCT\obj\Debug\SCT.csproj.CoreCompileInputs.cache

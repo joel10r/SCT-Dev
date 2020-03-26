@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity;
 using SCT.Models;
 using SCT.Models.AutoComplete;
 using PagedList;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace SCT.Controllers
 {
@@ -314,6 +316,44 @@ namespace SCT.Controllers
             ViewBag.idModelo = new SelectList(db.Modelo, "idModelo", "nombreModelo", solicitud.idModelo);
             ViewBag.idTipoTramite = new SelectList(db.TipoTramite, "idTipoTramite", "nombreTipoTramite", solicitud.idTipoTramite);
             return View(solicitud);
+        }
+
+
+        // Reporte 
+        public ActionResult reporteDiario()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reportes"), "SalidasDiarias.rpt"));
+
+
+            rd.SetDataSource(db.Solicitud.Where(s => s.fecha == DateTime.Today).Select(s => new
+            {
+                imei = s.imei.Value.ToString(),
+                serie = s.serie,
+                imeiSustituido = s.imeiSustituido.Value.ToString(),
+                nombreUsuario = s.nombreUsuario,
+                datosCliente = s.datosCliente,
+                cedulaCliente = s.cedulaCliente,
+                pedido = s.pedido,
+                telefono = s.telefono,
+                idModelo = s.idModelo,
+                idTipoTramite = s.idTipoTramite,
+                idFormaPago = s.idFormaPago,
+            }).OrderBy(s => s.nombreUsuario).ToList());
+
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "Oxigeno " + DateTime.Today.ToShortDateString() +".pdf");
+            }
+            catch
+            {
+                throw;
+            }
         }
 
 

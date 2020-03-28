@@ -9,7 +9,7 @@
 <h2>Solicitudes</h2>
 
 <p>
-    <a class="btn btn-success" href="@Url.Action("reporteDiario")">Generar Reporte</a>
+      <a class="btn btn-success" href="@Url.Action("reporteDiario")">Generar Reporte</a>
 </p>
 <table class="table table-hover">
     <tr>
@@ -92,8 +92,8 @@
                 @Html.DisplayFor(modelItem => item.FormaPago.nombreFormaPago)
             </td>
             <td>
-                @Html.ActionLink("Editar", "EditarSupervisor", new { id = item.idOrden }) |
-                @Html.ActionLink("Borrar", "Delete", new { id = item.idOrden })
+                @Html.ActionLink(" ", "EditarSupervisor", new { id = item.idOrden }, htmlAttributes: new { @class = "glyphicon glyphicon-edit btn btn-success" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.idOrden }, htmlAttributes: new { @class = "glyphicon glyphicon-remove btn btn-success" })
             </td>
         </tr>
     }

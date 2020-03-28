@@ -84,9 +84,9 @@
         @Html.DisplayFor(modelItem => item.fecha)
     </td>
     <td>
-        @Html.ActionLink("Editar", "EditConsultaSupervisor", new { id = item.idOrden }) |
-        @Html.ActionLink("Detalles", "DetallesConsulta", new { id = item.idOrden })
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.idOrden })
+        @Html.ActionLink("  ", "EditConsultaSupervisor", new { id = item.idOrden }, htmlAttributes: new { @class = "glyphicon glyphicon-edit btn btn-success"}) |
+        @Html.ActionLink(" ", "DetallesConsulta", new { id = item.idOrden }, htmlAttributes: new { @class = "glyphicon glyphicon-info-sign btn btn-success" }) |
+        @Html.ActionLink(" ", "Delete", new { id = item.idOrden }, htmlAttributes: new { @class = "glyphicon glyphicon-remove btn btn-success" })
 
     </td>
 </tr>

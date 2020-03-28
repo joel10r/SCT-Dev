@@ -178,11 +178,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Class\Ratio.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnotacionsController.cs" />
     <Compile Include="Controllers\BitacorasController.cs" />
     <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\FormaPagoesController.cs" />
+    <Compile Include="Controllers\GraficosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
@@ -280,6 +282,8 @@
       <DependentUpon>ModelSCT.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Chart\exporting.src.js" />
+    <Content Include="Scripts\Chart\highcharts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -383,6 +387,7 @@
     <Content Include="Views\Anotacions\ConsultaAnotacionFrontal.cshtml" />
     <Content Include="Views\Anotacions\ConsultaAnotacionSupervisor.cshtml" />
     <Content Include="Views\Anotacions\EditarConsulta.cshtml" />
+    <Content Include="Views\Graficos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
